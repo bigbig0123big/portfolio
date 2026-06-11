@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(53, 255, 159, 0.35);
+}
+
+@layer base {
+  * {
+    @apply border-slate-200 dark:border-white/10;
+  }
+
+  section {
+    @apply scroll-mt-24;
+  }
+}
+
+@layer components {
+  .container-padding {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass-card {
+    @apply border border-white/60 bg-white/70 shadow-premium backdrop-blur-2xl dark:border-white/10 dark:bg-white/[0.06];
+  }
+
+  .premium-button {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-300 focus:outline-none focus:ring-2 focus:ring-neon-green/60 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-ink;
+  }
+
+  .gradient-text {
+    @apply bg-premium-gradient bg-clip-text text-transparent;
+  }
+}
