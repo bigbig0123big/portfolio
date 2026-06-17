@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Kanit, Prompt } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
