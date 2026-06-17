@@ -66,16 +66,17 @@ export type Testimonial = {
 };
 
 export const profile = {
-  name: "Jah BIG",
-  initials: "JB",
+  name: "PONGSIT KANTHON (BIG)",
+  initials: "PK",
+  avatarUrl: "/profile.png",
   role: "Full-stack Developer / AI Automation Developer",
   headline:
     "I build modern web apps, AI tools, and automation systems that help businesses grow.",
-  email: "hello@example.com",
-  line: "@yourlineid",
-  github: "https://github.com/yourusername",
-  facebook: "https://facebook.com/yourprofile",
-  resumeUrl: "/resume.pdf",
+  email: "big.pongsitkan@gmail.com",
+  line: "xzfp",
+  github: "https://github.com/bigbig0123big",
+  facebook: "https://facebook.com/pongsit.kanthon",
+  resumeUrl: "#",
 };
 
 export const navItems: NavItem[] = [

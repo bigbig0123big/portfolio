@@ -3,19 +3,21 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
-import { projects } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Projects() {
+  const { content, language } = useLanguage();
+
   return (
     <section id="projects" className="relative py-24 sm:py-28">
       <div className="absolute right-0 top-32 -z-10 h-80 w-80 rounded-full bg-violet-400/10 blur-3xl" />
       <div className="container-padding">
         <SectionHeader
-          eyebrow="Projects"
-          title="Selected work built for real business impact."
-          description="Project concepts that show how I design scalable web systems, automation workflows, AI-powered tools, and premium client-facing experiences."
+          eyebrow={content.projects.eyebrow}
+          title={content.projects.title}
+          description={content.projects.description}
         />
 
         <motion.div
@@ -25,7 +27,7 @@ export default function Projects() {
           viewport={{ once: true, amount: 0.12 }}
           className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
         >
-          {projects.map((project) => (
+          {content.projectsList.map((project) => (
             <motion.article key={project.title} variants={fadeUp} className="group glass-card overflow-hidden rounded-[2rem] transition duration-300 hover:-translate-y-2 hover:border-emerald-400/50">
               <div className={cn("relative h-52 bg-gradient-to-br", project.gradient)}>
                 <div className="absolute inset-0 bg-hero-grid bg-[length:28px_28px] opacity-30" />
@@ -55,9 +57,10 @@ export default function Projects() {
                 </div>
                 <div className="mt-6 flex gap-3">
                   <a href={project.liveUrl} className="premium-button flex-1 bg-slate-950 px-4 py-2.5 text-white hover:bg-emerald-500 hover:text-ink dark:bg-white dark:text-ink dark:hover:bg-emerald-300">
-                    Live Demo <ExternalLink className="ml-2 h-4 w-4" />
+                    {language === "th" ? "ดูเดโม" : "Live Demo"} <ExternalLink className="ml-2 h-4 w-4" />
                   </a>
                   <a href={project.githubUrl} className="premium-button border border-slate-200 bg-white px-4 py-2.5 text-slate-900 hover:border-emerald-400 dark:border-white/10 dark:bg-white/5 dark:text-white">
+                    <span className="sr-only">{language === "th" ? "ดูโค้ดบน GitHub" : "View GitHub repository"}</span>
                     <Github className="h-4 w-4" />
                   </a>
                 </div>

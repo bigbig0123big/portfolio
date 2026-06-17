@@ -1,12 +1,28 @@
 import type { Metadata, Viewport } from "next";
+import { Kanit, Prompt } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
+const prompt = Prompt({
+  subsets: ["latin", "thai"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-en",
+  display: "swap",
+});
+
+const kanit = Kanit({
+  subsets: ["latin", "thai"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-thai",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-domain.com"),
+  metadataBase: new URL("https://portfolio-pi-jet-7xkyelfep1.vercel.app/"),
   title: {
-    default: "Jah BIG — Full-stack Developer & AI Automation Developer",
-    template: "%s | Jah BIG Portfolio",
+    default: "Portfolio | Pongsit K.",
+    template: "%s | Pongsit K.",
   },
   description:
     "Premium portfolio website for a Full-stack Developer and AI Automation Developer building web apps, dashboards, AI tools, LINE OA, CRM, and automation systems.",
@@ -20,20 +36,25 @@ export const metadata: Metadata = {
     "Dashboard Developer",
     "CRM System",
   ],
-  authors: [{ name: "Jah BIG" }],
-  creator: "Jah BIG",
+  authors: [{ name: "Pongsit K." }],
+  creator: "Pongsit K.",
+  icons: {
+    icon: [{ url: "/logo.svg", type: "image/svg+xml" }],
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
   openGraph: {
-    title: "Jah BIG — Full-stack Developer & AI Automation Developer",
+    title: "Portfolio | Pongsit K.",
     description:
       "Modern web apps, AI tools, LINE OA, CRM, dashboards, and automation systems for business growth.",
-    url: "https://your-domain.com",
-    siteName: "Jah BIG Portfolio",
+    url: "https://portfolio-pi-jet-7xkyelfep1.vercel.app/",
+    siteName: "Pongsit K.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Jah BIG Portfolio Preview",
+        alt: "PONGSIT KANTHON (BIG) social preview",
       },
     ],
     locale: "en_US",
@@ -41,10 +62,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jah BIG — Full-stack Developer & AI Automation Developer",
+    title: "Portfolio | Pongsit K.",
     description:
       "I build modern web apps, AI tools, and automation systems that help businesses grow.",
-    images: ["/og-image.png"],
+    images: ["/og-image.svg"],
   },
   robots: {
     index: true,
@@ -65,10 +86,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-white font-sans text-slate-950 antialiased dark:bg-ink dark:text-white">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+      <body className={`${prompt.variable} ${kanit.variable} min-h-screen bg-white font-sans text-slate-950 antialiased dark:bg-ink dark:text-white`}>
+        <LanguageProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

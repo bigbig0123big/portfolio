@@ -4,10 +4,19 @@
 
 :root {
   color-scheme: light;
+  --font-sans: var(--font-en);
 }
 
 .dark {
   color-scheme: dark;
+}
+
+html[lang="th"] {
+  --font-sans: var(--font-thai);
+}
+
+html[lang="en"] {
+  --font-sans: var(--font-en);
 }
 
 html {

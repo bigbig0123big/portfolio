@@ -2,17 +2,19 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/SectionHeader";
-import { skillGroups } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Skills() {
+  const { content } = useLanguage();
+
   return (
     <section id="skills" className="bg-slate-50/80 py-24 dark:bg-white/[0.02] sm:py-28">
       <div className="container-padding">
         <SectionHeader
-          eyebrow="Skills"
-          title="Modern stack for web, AI, and automation."
-          description="A practical toolkit for building premium interfaces, reliable APIs, business dashboards, and automation systems that are easy to maintain."
+          eyebrow={content.skills.eyebrow}
+          title={content.skills.title}
+          description={content.skills.description}
         />
 
         <motion.div
@@ -22,7 +24,7 @@ export default function Skills() {
           viewport={{ once: true, amount: 0.2 }}
           className="grid gap-5 md:grid-cols-2 xl:grid-cols-4"
         >
-          {skillGroups.map((group) => {
+          {content.skillGroups.map((group) => {
             const Icon = group.icon;
             return (
               <motion.div key={group.title} variants={fadeUp} className="glass-card group rounded-[2rem] p-6 transition duration-300 hover:-translate-y-2 hover:border-emerald-400/50">

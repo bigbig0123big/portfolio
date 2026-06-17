@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "Geist", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "Inter", "Geist", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
         ink: "#050505",

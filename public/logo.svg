@@ -1,0 +1,21 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="56" x2="448" y2="456" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#050505" />
+      <stop offset="1" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="frame" x1="92" y1="88" x2="420" y2="424" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#35FF9F" />
+      <stop offset="0.5" stop-color="#71D7FF" />
+      <stop offset="1" stop-color="#8B5CF6" />
+    </linearGradient>
+    <linearGradient id="mark" x1="156" y1="144" x2="356" y2="356" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" />
+      <stop offset="1" stop-color="#D7E7FF" />
+    </linearGradient>
+  </defs>
+  <rect x="24" y="24" width="464" height="464" rx="124" fill="url(#bg)" />
+  <rect x="24" y="24" width="464" height="464" rx="124" stroke="url(#frame)" stroke-width="16" />
+  <rect x="114" y="114" width="284" height="284" rx="72" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.08" />
+  <text x="256" y="333" text-anchor="middle" fill="url(#mark)" font-size="190" font-family="Arial, Helvetica, sans-serif" font-weight="900" letter-spacing="-12">B</text>
+</svg>

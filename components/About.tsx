@@ -1,19 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { highlights } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import SectionHeader from "@/components/SectionHeader";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function About() {
+  const { content } = useLanguage();
+
   return (
     <section id="about" className="relative py-24 sm:py-28">
       <div className="absolute inset-x-0 top-20 -z-10 mx-auto h-64 max-w-4xl rounded-full bg-emerald-300/10 blur-3xl" />
       <div className="container-padding">
         <SectionHeader
-          eyebrow="About"
-          title="Developer mindset with business execution."
-          description="I combine clean engineering, thoughtful UI, and practical automation to create systems that help teams save time, increase sales, and operate with confidence."
+          eyebrow={content.about.eyebrow}
+          title={content.about.title}
+          description={content.about.description}
         />
 
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -25,10 +27,10 @@ export default function About() {
             className="glass-card rounded-[2rem] p-6 sm:p-8"
           >
             <p className="text-lg leading-9 text-slate-700 dark:text-slate-300">
-              I specialize in building modern web applications, dashboards, AI automation, LINE OA integrations, CRM systems, and backend operations tools. My goal is not only to make software look beautiful, but to make it solve real business problems with clear UX, reliable architecture, and scalable code.
+              {content.hero.headline}
             </p>
             <p className="mt-5 text-lg leading-9 text-slate-700 dark:text-slate-300">
-              Whether you need a landing page, admin panel, AI chatbot, automation workflow, or full web application, I can help turn your idea into a professional digital product ready for users and clients.
+              {content.about.description}
             </p>
           </motion.div>
 
@@ -39,7 +41,7 @@ export default function About() {
             viewport={{ once: true, amount: 0.2 }}
             className="grid gap-4 sm:grid-cols-2"
           >
-            {highlights.map((item) => {
+            {content.highlights.map((item) => {
               const Icon = item.icon;
               return (
                 <motion.div key={item.title} variants={fadeUp} className="group glass-card rounded-[1.75rem] p-6 transition duration-300 hover:-translate-y-2 hover:border-emerald-400/50">

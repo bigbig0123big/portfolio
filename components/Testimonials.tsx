@@ -3,17 +3,19 @@
 import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
-import { testimonials } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Testimonials() {
+  const { content } = useLanguage();
+
   return (
     <section id="testimonials" className="bg-slate-50/80 py-24 dark:bg-white/[0.02] sm:py-28">
       <div className="container-padding">
         <SectionHeader
-          eyebrow="Testimonials"
-          title="Trusted by clients who need speed and quality."
-          description="Mock client feedback examples showing the kind of outcomes this portfolio is designed to communicate."
+          eyebrow={content.testimonials.eyebrow}
+          title={content.testimonials.title}
+          description={content.testimonials.description}
         />
 
         <motion.div
@@ -23,7 +25,7 @@ export default function Testimonials() {
           viewport={{ once: true, amount: 0.2 }}
           className="grid gap-6 lg:grid-cols-3"
         >
-          {testimonials.map((testimonial) => (
+          {content.testimonialsList.map((testimonial) => (
             <motion.figure key={testimonial.name} variants={fadeUp} className="glass-card rounded-[2rem] p-6 transition duration-300 hover:-translate-y-2 hover:border-emerald-400/50">
               <Quote className="h-9 w-9 text-emerald-500" />
               <div className="mt-5 flex gap-1 text-amber-400" aria-label="5 star rating">

@@ -2,17 +2,19 @@
 
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/SectionHeader";
-import { experiences } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Experience() {
+  const { content } = useLanguage();
+
   return (
     <section id="experience" className="relative py-24 sm:py-28">
       <div className="container-padding">
         <SectionHeader
-          eyebrow="Experience"
-          title="Experience across web apps, AI, and automation."
-          description="A practical timeline of roles and work areas focused on building usable systems, integrating AI, and shipping client-ready products."
+          eyebrow={content.experience.eyebrow}
+          title={content.experience.title}
+          description={content.experience.description}
         />
 
         <motion.div
@@ -24,7 +26,7 @@ export default function Experience() {
         >
           <div className="absolute left-4 top-0 hidden h-full w-px bg-gradient-to-b from-emerald-400 via-blue-400 to-violet-500 sm:block" />
           <div className="space-y-6">
-            {experiences.map((item) => (
+            {content.experiences.map((item) => (
               <motion.div key={item.role} variants={fadeUp} className="relative sm:pl-12">
                 <div className="absolute left-[9px] top-8 hidden h-3 w-3 rounded-full bg-emerald-300 shadow-glow ring-8 ring-emerald-300/10 sm:block" />
                 <div className="glass-card rounded-[2rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-emerald-400/50 sm:p-7">

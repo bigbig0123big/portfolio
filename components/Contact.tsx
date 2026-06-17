@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 import SectionHeader from "@/components/SectionHeader";
 import { profile } from "@/lib/data";
 import { fadeUp } from "@/lib/motion";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 type FormState = {
   name: string;
@@ -22,6 +23,7 @@ const initialForm: FormState = {
 export default function Contact() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [showToast, setShowToast] = useState(false);
+  const { content } = useLanguage();
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,9 +37,9 @@ export default function Contact() {
       <div className="absolute inset-x-0 bottom-0 -z-10 h-96 bg-[radial-gradient(circle_at_center,rgba(53,255,159,0.16),transparent_55%)]" />
       <div className="container-padding">
         <SectionHeader
-          eyebrow="Contact"
-          title="Have a project in mind? Let’s build it."
-          description="Send a quick message about your website, dashboard, AI chatbot, LINE OA, CRM, or automation workflow."
+          eyebrow={content.contact.eyebrow}
+          title={content.contact.title}
+          description={content.contact.description}
         />
 
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
@@ -48,9 +50,9 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.25 }}
             className="glass-card rounded-[2rem] p-6 sm:p-8"
           >
-            <h3 className="text-2xl font-black text-slate-950 dark:text-white">Let’s talk about your next system.</h3>
+            <h3 className="text-2xl font-black text-slate-950 dark:text-white">{content.contact.introTitle}</h3>
             <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
-              I can help with premium websites, internal tools, AI automations, LINE OA, dashboards, CRM systems, and API integrations.
+              {content.contact.introDescription}
             </p>
 
             <div className="mt-8 space-y-4">
@@ -59,7 +61,7 @@ export default function Contact() {
                   <Mail className="h-5 w-5" />
                 </span>
                 <span>
-                  <span className="block text-sm font-black text-slate-950 dark:text-white">Email</span>
+                  <span className="block text-sm font-black text-slate-950 dark:text-white">{content.contact.emailLabel}</span>
                   <span className="text-sm text-slate-500 dark:text-slate-400">{profile.email}</span>
                 </span>
               </a>
@@ -69,7 +71,7 @@ export default function Contact() {
                   <MessageCircle className="h-5 w-5" />
                 </span>
                 <span>
-                  <span className="block text-sm font-black text-slate-950 dark:text-white">LINE</span>
+                  <span className="block text-sm font-black text-slate-950 dark:text-white">{content.contact.lineLabel}</span>
                   <span className="text-sm text-slate-500 dark:text-slate-400">{profile.line}</span>
                 </span>
               </a>
@@ -97,18 +99,18 @@ export default function Contact() {
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block">
-                <span className="mb-2 block text-sm font-bold text-slate-700 dark:text-slate-200">Name</span>
+                <span className="mb-2 block text-sm font-bold text-slate-700 dark:text-slate-200">{content.contact.formName}</span>
                 <input
                   required
                   value={form.name}
                   onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-                  placeholder="Your name"
+                  placeholder={content.contact.formName}
                   className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10 dark:border-white/10 dark:bg-white/5 dark:text-white"
                 />
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-sm font-bold text-slate-700 dark:text-slate-200">Email</span>
+                <span className="mb-2 block text-sm font-bold text-slate-700 dark:text-slate-200">{content.contact.formEmail}</span>
                 <input
                   required
                   type="email"
@@ -121,23 +123,23 @@ export default function Contact() {
             </div>
 
             <label className="mt-5 block">
-              <span className="mb-2 block text-sm font-bold text-slate-700 dark:text-slate-200">Message</span>
+              <span className="mb-2 block text-sm font-bold text-slate-700 dark:text-slate-200">{content.contact.formMessage}</span>
               <textarea
                 required
                 rows={7}
                 value={form.message}
                 onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
-                placeholder="Tell me about your project..."
+                placeholder={content.contact.formMessage}
                 className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10 dark:border-white/10 dark:bg-white/5 dark:text-white"
               />
             </label>
 
             <button type="submit" className="premium-button mt-6 w-full bg-slate-950 text-white hover:-translate-y-1 hover:bg-emerald-500 hover:text-ink dark:bg-white dark:text-ink dark:hover:bg-emerald-300">
-              Send Message <Send className="ml-2 h-4 w-4" />
+              {content.contact.formSubmit} <Send className="ml-2 h-4 w-4" />
             </button>
 
             <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-slate-500 dark:text-slate-400">
-              <LineChart className="h-4 w-4" /> Mock submit only. Connect API route, Resend, EmailJS, or database later.
+              <LineChart className="h-4 w-4" /> {content.contact.formNote}
             </p>
           </motion.form>
         </div>
@@ -151,7 +153,7 @@ export default function Contact() {
             exit={{ opacity: 0, y: 20, scale: 0.96 }}
             className="fixed bottom-6 right-4 z-[60] flex items-center gap-3 rounded-2xl border border-emerald-400/30 bg-slate-950 px-5 py-4 text-sm font-bold text-white shadow-glow dark:bg-white dark:text-ink sm:right-6"
           >
-            Message sent successfully!
+            {content.contact.toast}
             <button type="button" aria-label="Close toast" onClick={() => setShowToast(false)}>
               <X className="h-4 w-4" />
             </button>
